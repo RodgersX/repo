@@ -53,6 +53,11 @@ export default new Router({
       path: '/media',
       name: 'media',
       component: () => import(/* webpackChunkName: "about" */ './views/media.vue')
+    },
+    {
+      path: '/activities',
+      name: 'activities',
+      component: () => import(/* webpackChunkName: "about" */ './views/activities.vue')
     }
   ]
 })

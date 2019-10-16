@@ -6,7 +6,7 @@
         <v-spacer></v-spacer>
         <v-toolbar-items>
             <v-btn text class="toolbar-item" to="/overview">Overview</v-btn>
-            <v-btn text class="toolbar-item">Activities</v-btn>
+            <v-btn text class="toolbar-item" to="/activities">Activities</v-btn>
             <v-btn text class="toolbar-item" to="/media">Media Library</v-btn>
         </v-toolbar-items>
         <v-btn icon color="#FF6347">
