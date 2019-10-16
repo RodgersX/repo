@@ -22,6 +22,23 @@
                             </v-card>
                             </v-flex>
                         </v-layout>
+                        <v-card-actions>
+                            <v-btn icon @click="show = !show" color="#FF0000" class="pa-10">
+                                See More
+                            </v-btn>
+                        </v-card-actions>
+
+                        <v-expand-transition>
+                            <div v-show="show">
+                                <v-layout row class="pa-4">
+                                    <v-flex v-for="(card, index) in hidden" :key="index">
+                                        <v-card  flat :height="height" :width="width" class="ma-3">
+                                            <v-img :height="height" :width="width" :src="card.src"></v-img>
+                                        </v-card>
+                                    </v-flex>
+                                </v-layout>
+                            </div>
+                        </v-expand-transition>
                     </v-card>
                 </v-tab-item>
             </v-tabs>
@@ -46,6 +63,7 @@ export default
       return {
         height: 150,
         width: 150,
+        show:false,
 
 
         tab: null,
@@ -59,7 +77,10 @@ export default
             {name: 'image1', src: '/kip.jpg'},
             {name: 'image2', src: '/kip.jpg'},
             {name: 'image3', src: '/kip.jpg'},
-            {name: 'image4', src: '/kip.jpg'},
+            
+        ],
+
+        hidden: [
             {name: 'image5', src: '/kip.jpg'},
             {name: 'image6', src: '/kip.jpg'},
             {name: 'image6', src: '/kip.jpg'},
@@ -68,6 +89,8 @@ export default
             {name: 'image6', src: '/kip.jpg'},
             {name: 'image6', src: '/kip.jpg'}
         ]
+
+
         }
 
     }
@@ -93,6 +116,12 @@ export default
     align-items: center;
     left: 22%;
     color: #D3D3D3;
+}
+
+.pa-10 {
+    /* padding-left: 3rem !important; */
+    display: flex;
+    justify-content: flex-start;
 }
 
 .library {
