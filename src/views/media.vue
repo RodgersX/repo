@@ -1,5 +1,16 @@
 <template>
     <div class="library-media">
+
+        <!-- the backdrop and the form displayed after clicking the add folder div -->
+        <div class="backdrop"></div>
+        <div class="modal">
+            <h1 class="modal__title">Do you want to continue?</h1>
+            <div class="modal__actions">
+                <a href="start-hosting/index.html" class="modal__action">Yes!</a>
+                <button id="noButton" class="modal__action modal__action--negative" type="button">No!</button>
+            </div>
+        </div> 
+        <!-- imported header -->
         <Header></Header>
 
         <div class="pa-12 text-center">
@@ -34,12 +45,14 @@
                                 </v-card>
                                 </v-flex>
                             </v-layout>
+
                             <v-card-actions>
-                                <v-btn icon @click="show = !show" color="#FF0000" class="pa-10">
+                                <v-btn text @click="show = !show" color="#FF0000" class="pa-10">
                                     See More
                                 </v-btn>
                             </v-card-actions>
 
+                            <!-- hidden for see more functionality -->
                             <v-expand-transition>
                                 <div v-show="show">
                                     <v-layout row class="pa-4">
@@ -85,10 +98,12 @@
                                 </v-flex>
 
                                 <!-- add folder functoinality -->
-                                <div class="add-folder">
-                                    <v-icon color="#D3D3D3" class="folder folder-plus">mdi-folder-plus</v-icon>
-                                    Create Folder
-                                </div>
+                                <v-btn text :height="height" :width="width" class="add-btn">
+                                    <div :height="height" :width="width" class="add-folder" >
+                                        <v-icon color="#D3D3D3" class="folder folder-plus">mdi-folder-plus</v-icon>
+                                        Create Folder
+                                    </div> 
+                                </v-btn> 
                             </v-layout>
                             <v-card-actions>
                                 
@@ -106,6 +121,7 @@
 <script>
 import Header from '../components/header2.vue'
 import Footer from '../components/footer2.vue'
+
 export default 
 {
   components: {
@@ -116,11 +132,12 @@ export default
   data() 
   {
       return {
-        height: 150,
+        height: 160,
         width: 200,
         show:false,
         tab: null,
         text: 'et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+        url: '/overview.vue',
 
         dmenu: [
             { title: 'Give Permissions' },
@@ -166,6 +183,14 @@ export default
 
 <style scoped>
 
+.add-btn {
+    background: transparent;
+    width: 100%;
+    height: 100%;
+    border: 2px dashed #D3D3D3;
+    margin-top: 5px;
+}
+
 .pa-4 {
     padding: 5rem !important;
 }
@@ -203,7 +228,7 @@ export default
 
 .add-folder {
     height: 9.9rem;
-    border: 2px dashed #E0E0E0;
+    /* border: 2px dashed #E0E0E0; */
     color: #E0E0E0;
     width: 12.5rem;
     text-align: center;
@@ -247,5 +272,28 @@ export default
 
 .ma-3 {
     margin:10px 0 !important;
+}
+
+.backdrop {
+    position: fixed;
+    display: none;
+    opacity: 0;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.5);
+    -webkit-transition: opacity 0.2s linear;
+    -o-transition: opacity 0.2s linear;
+    transition: opacity 0.2s linear;
+}
+
+.open {
+      display: block !important;
+      opacity: 1 !important;
+      -webkit-transform: translateY(0) !important;
+          -ms-transform: translateY(0) !important;
+              transform: translateY(0) !important;
 }
 </style>

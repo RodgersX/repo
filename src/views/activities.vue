@@ -1,6 +1,7 @@
 <template>
     <div class="activities">
         <Header></Header>
+        <v-divider></v-divider>
         <v-row>
             <v-col cols="12" sm="6" offset-sm="3">
             <v-card flat class="text-center">
