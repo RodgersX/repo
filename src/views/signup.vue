@@ -5,16 +5,16 @@
       <v-form>
         <h1 class="ma-3">Sign up to Dashboard</h1>
         <div>
-          <v-text-field outlined dense placeholder="Fullname"></v-text-field>
+          <v-text-field outlined dense placeholder="Fullname" required></v-text-field>
         </div>
         <div>
-          <v-text-field outlined dense placeholder="you@domain.com"></v-text-field>
+          <v-text-field outlined dense placeholder="you@domain.com" type="email" required></v-text-field>
         </div>
         <div>
-          <v-text-field outlined dense placeholder="password"></v-text-field>
+          <v-text-field outlined dense placeholder="password" type="password"></v-text-field>
         </div>
         <div>
-          <v-text-field outlined dense placeholder="confirm password"></v-text-field>
+          <v-text-field outlined dense placeholder="confirm password" type="password"></v-text-field>
         </div>
         <div>
           <v-btn depressed class="btn">Continue</v-btn>

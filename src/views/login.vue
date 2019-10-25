@@ -1,21 +1,22 @@
 <template>
 <div class="main">
   <Header></Header>
-    <div class="form"> 
-        <v-form>
-          <h1 class="ma-3">Log in to Dashboard</h1>
-          <div>
-            <v-text-field outlined dense placeholder="you@domain.com"></v-text-field>
-          </div>
-          
-          <div>
-            <v-text-field outlined dense placeholder="password"></v-text-field>
-          </div>
-          <div>
-            <v-btn depressed class="btn">Continue</v-btn>
-          </div>
-        </v-form>
-    </div>
+  <div class="form"> 
+      <v-form>
+        <h1 class="ma-3">Log in to Dashboard</h1>
+        <div>
+          <v-text-field outlined dense type="email" placeholder="you@domain.com"></v-text-field>
+        </div>
+        
+        <div>
+          <v-text-field outlined dense placeholder="password" type="password"></v-text-field>
+        </div>
+
+        <div>
+          <v-btn depressed class="btn">Continue</v-btn>
+        </div>
+      </v-form>
+  </div>
   <Footer></Footer>
   
 </div>

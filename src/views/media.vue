@@ -70,12 +70,12 @@
                                         <v-menu v-model="value" close-on-click close-on-content-click offset-y>
                                             <template v-slot:activator="{ on }">
                                                 <v-btn color="#ffff" depressed v-on="on">
-                                                    <v-icon>mdi-dots-vertical</v-icon>
+                                                    <v-icon @click="index = !index">mdi-dots-vertical</v-icon>
                                                 </v-btn>
                                             </template>
                                             <v-list>
                                                 <v-list-item v-for="(item, index) in dmenu" :key="index">
-                                                    <v-list-item-title>{{ item.title }}</v-list-item-title>
+                                                    <v-list-item-title v-if="!index">{{ item.title }}</v-list-item-title>
                                                 </v-list-item>
                                             </v-list>
                                         </v-menu>
@@ -86,7 +86,7 @@
 
                                 <!-- add folder functoinality -->
                                 <div class="add-folder">
-                                    <v-icon x-large color="#D3D3D3" class="folder folder-plus">mdi-folder-plus</v-icon>
+                                    <v-icon color="#D3D3D3" class="folder folder-plus">mdi-folder-plus</v-icon>
                                     Create Folder
                                 </div>
                             </v-layout>
@@ -128,6 +128,13 @@ export default
             { title: 'Delete' }
         ],
 
+        items: [
+            { title: 'Click Me' },
+            { title: 'Click Me' },
+            { title: 'Click Me' },
+            { title: 'Click Me 2' },
+        ],
+
          cards: [
             {name: 'image1', src: '/kip.jpg'},
             {name: 'image2', src: '/kip.jpg'},
@@ -151,16 +158,14 @@ export default
             {name: 'Lorem Dolor'},
             {name: 'Lorem Ipsum'}
         ]
-
-
       }
-
     }
 }
 
 </script>
 
 <style scoped>
+
 .pa-4 {
     padding: 5rem !important;
 }
@@ -194,9 +199,6 @@ export default
     display: flex;
     justify-content: center;
     align-items: center;
-}
-
-.card-folder {
 }
 
 .add-folder {
