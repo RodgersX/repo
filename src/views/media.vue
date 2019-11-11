@@ -1,86 +1,85 @@
 <template>
     <div class="library-media">
-
-        <!-- the backdrop and the form displayed after clicking the add folder div -->
-        <div class="backdrop"></div>
-        <div class="modal">
-            <h1 class="modal__title">Do you want to continue?</h1>
-            <div class="modal__actions">
-                <a href="start-hosting/index.html" class="modal__action">Yes!</a>
-                <button id="noButton" class="modal__action modal__action--negative" type="button">No!</button>
-            </div>
-        </div> 
-        <!-- imported header -->
         <Header></Header>
 
         <div class="pa-12 text-center">
             Drop files here or select files from computer
         </div>
 
-        <div class="library">
-            <v-card>
+        <v-container class="top-container">
+            <v-tabs color="#FF0000" text class="tab_container">
+                <v-tabs-slider></v-tabs-slider>
+                <div class="media-lib">Media Library</div>
+                <v-spacer></v-spacer>
+                <v-tab href="#tab-1">
+                    Image View
+                </v-tab>
 
-                <!-- tab names and reference ids -->
-                <v-tabs v-model="tab" color="#FF0000" centered text>
-                    <v-tabs-slider></v-tabs-slider>
-                    <div class="media-lib">Media Library</div>
-                    <v-spacer></v-spacer>
-                    <v-tab href="#tab-1">
-                        Image View
-                    </v-tab>
+                <v-tab href="#tab-2">
+                    Folder View
+                </v-tab>
 
-                    <v-tab href="#tab-2">
-                        Folder View
-                    </v-tab>
-                </v-tabs>
-
-                <!-- image view tab items -->
-                <v-tabs-items v-model="tab">
-                    <v-tab-item id="tab-1">
-                        <v-card flat>
-                            <v-layout row class="pa-4">
-                                <v-flex v-for="(card, index) in cards" :key="index">
-                                <v-card flat :height="height" :width="width" class="ma-3">
+                <v-tab-item id="tab-1">
+                    <v-row>
+                        <v-col cols="12">
+                            <v-row>
+                                <v-card 
+                                v-for="(card, index) in cards" :key="index"
+                                flat 
+                                :height="height" 
+                                :width="width" 
+                                class="ma-3">
                                     <v-img :height="height" :width="width" :src="card.src"></v-img>
                                 </v-card>
-                                </v-flex>
-                            </v-layout>
+                            </v-row>
 
-                            <v-card-actions>
-                                <v-btn text @click="show = !show" color="#FF0000" class="pa-10">
-                                    See More
-                                </v-btn>
-                            </v-card-actions>
+                            <v-row>
+                                 <v-card-actions>
+                                    <v-btn text @click="show = !show" color="#FF0000" class="pa-10">
+                                        See More
+                                    </v-btn>
+                                </v-card-actions>
+                            </v-row>
 
-                            <!-- hidden for see more functionality -->
                             <v-expand-transition>
                                 <div v-show="show">
-                                    <v-layout row class="pa-4">
-                                        <v-flex v-for="(card, index) in hidden" :key="index">
-                                            <v-card  flat :height="height" :width="width" class="ma-3">
-                                                <v-img :height="height" :width="width" :src="card.src"></v-img>
-                                            </v-card>
-                                        </v-flex>
-                                    </v-layout>
+                                    <v-row>
+                                        <v-col>
+                                            <v-row>
+                                                <v-card  
+                                                v-for="(card, index) in hidden" 
+                                                :key="index" 
+                                                flat 
+                                                :height="height" 
+                                                :width="width" 
+                                                class="ma-3">
+                                                    <v-img :height="height" :width="width" :src="card.src"></v-img>
+                                                </v-card>
+                                            </v-row>
+                                        </v-col>
+                                    </v-row>
                                 </div>
-                            </v-expand-transition>
-                            
-                        </v-card>
-                    </v-tab-item>
+                            </v-expand-transition>                             
+                        </v-col>
+                    </v-row>
+                </v-tab-item>
 
-                    <!-- folder view items -->
-                    <v-tab-item id="tab-2">
-                        <v-card flat>
-                            <v-layout row class="pa-4">
-                                <v-flex v-for="(folder, index) in folders" :key="index">
-                                <v-card :height="height" :width="width" class="ma-3">
-                                    <v-icon x-large class="folder">mdi-folder</v-icon>
+                <v-tab-item id="tab-2">
+                    <v-row>
+                        <v-col cols="12">
+                            <v-row>
+                                <v-card 
+                                :height="height" 
+                                :width="width" 
+                                class="ma-3"
+                                v-for="(folder, index) in folders" :key="index">
+                                    <v-icon class="folder">mdi-folder</v-icon>
                                     <v-card-actions>
                                         <v-card-text class="display-4">{{ folder.name }}</v-card-text>
-                                        <v-spacer></v-spacer>
+                                        <v-spacer></v-spacer> -->
 
                                         <!-- dropdown menu for the context menu -->
-                                        <v-menu v-model="value" close-on-click close-on-content-click offset-y>
+                                        <v-menu close-on-click close-on-content-click offset-y>
                                             <template v-slot:activator="{ on }">
                                                 <v-btn color="#ffff" depressed v-on="on">
                                                     <v-icon @click="index = !index">mdi-dots-vertical</v-icon>
@@ -94,26 +93,20 @@
                                         </v-menu>
                                     </v-card-actions>
                                 </v-card>
-                                
-                                </v-flex>
 
-                                <!-- add folder functoinality -->
-                                <v-btn text :height="height" :width="width" class="add-btn">
-                                    <div :height="height" :width="width" class="add-folder" >
+                                <!-- Create new folder -->
+                                <v-card flat :height="height" :width="width" class="ma-3 add-card"> 
+                                    <div  class="add-folder">
                                         <v-icon color="#D3D3D3" class="folder folder-plus">mdi-folder-plus</v-icon>
                                         Create Folder
-                                    </div> 
-                                </v-btn> 
-                            </v-layout>
-                            <v-card-actions>
-                                
-                            </v-card-actions>                                                        
-                        </v-card>
-                    </v-tab-item>   
-                </v-tabs-items>
-            </v-card>            
-        </div>
-        
+                                    </div>
+                                </v-card> 
+                            </v-row>
+                        </v-col>
+                    </v-row>
+                </v-tab-item>
+            </v-tabs>
+        </v-container>
         <Footer></Footer>
     </div>
 </template>
@@ -145,18 +138,10 @@ export default
             { title: 'Delete' }
         ],
 
-        items: [
-            { title: 'Click Me' },
-            { title: 'Click Me' },
-            { title: 'Click Me' },
-            { title: 'Click Me 2' },
-        ],
-
-         cards: [
+        cards: [
             {name: 'image1', src: '/kip.jpg'},
             {name: 'image2', src: '/kip.jpg'},
             {name: 'image3', src: '/kip.jpg'},
-            
         ],
 
         hidden: [
@@ -182,7 +167,6 @@ export default
 </script>
 
 <style scoped>
-
 .add-btn {
     background: transparent;
     width: 100%;
@@ -191,8 +175,20 @@ export default
     margin-top: 5px;
 }
 
+.add-card {
+    border: 2px dashed #D3D3D3;
+}
+
+.top-container {
+    margin-left: 20% !important;
+}
+
 .pa-4 {
     padding: 5rem !important;
+}
+
+.tab_container {
+    width: 60%;
 }
 
 .media-lib {
@@ -228,7 +224,6 @@ export default
 
 .add-folder {
     height: 9.9rem;
-    /* border: 2px dashed #E0E0E0; */
     color: #E0E0E0;
     width: 12.5rem;
     text-align: center;
@@ -245,7 +240,6 @@ export default
 }
 
 .pa-10 {
-    /* padding-left: 3rem !important; */
     display: flex;
     justify-content: flex-start;
 }
@@ -271,29 +265,7 @@ export default
 }
 
 .ma-3 {
-    margin:10px 0 !important;
-}
-
-.backdrop {
-    position: fixed;
-    display: none;
-    opacity: 0;
-    top: 0;
-    left: 0;
-    z-index: 100;
-    width: 100vw;
-    height: 100vh;
-    background: rgba(0, 0, 0, 0.5);
-    -webkit-transition: opacity 0.2s linear;
-    -o-transition: opacity 0.2s linear;
-    transition: opacity 0.2s linear;
-}
-
-.open {
-      display: block !important;
-      opacity: 1 !important;
-      -webkit-transform: translateY(0) !important;
-          -ms-transform: translateY(0) !important;
-              transform: translateY(0) !important;
+    margin:10px !important;
+    margin-left: 30px !important; 
 }
 </style>
