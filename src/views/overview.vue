@@ -9,7 +9,7 @@
           <v-list-item>
             <v-list-item-avatar size="68" color="#D3D3D3" class="pa-5"></v-list-item-avatar>
             <v-list-item-content>
-              <v-list-item-title class="headline mb-1">Username</v-list-item-title>
+              <v-list-item-title class="headline mb-1">{{ username }}</v-list-item-title>
               <v-btn text color="#FF0000" class="btn">Edit Details</v-btn>
             </v-list-item-content>
           </v-list-item>
@@ -83,14 +83,23 @@
 <script>
 import Header from '../components/header2.vue'
 import Footer from '../components/footer2.vue'
+import { mapState } from 'vuex'
+
 export default {
   components: {
     Header,
     Footer
   },
 
+  computed: {
+    ...mapState([
+      'name'
+    ])
+  },
+
   data() {
     return {
+      username: '{{ username }}',
       webname: '{{ website name }}',
 
       //list items for recent activity
@@ -107,8 +116,7 @@ export default {
         tracks: [
           {title: 'You logged in', text: '36m'}
         ]        
-    }
-    
+    } 
 
   }
 }

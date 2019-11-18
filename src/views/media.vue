@@ -76,7 +76,7 @@
                                     <v-icon class="folder">mdi-folder</v-icon>
                                     <v-card-actions>
                                         <v-card-text class="display-4">{{ folder.name }}</v-card-text>
-                                        <v-spacer></v-spacer> -->
+                                        <v-spacer></v-spacer>
 
                                         <!-- dropdown menu for the context menu -->
                                         <v-menu close-on-click close-on-content-click offset-y>

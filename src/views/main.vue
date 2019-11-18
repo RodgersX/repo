@@ -2,28 +2,24 @@
 <div class="main">
   <Header></Header>
     <div class="form">
-      <v-form>
+      <form>
         <h1 class="ma-3">Log in to Dashboard</h1>
         <div class="item">
-          <v-btn depressed class="btn">
+          <v-btn depressed class="btn" to="/login">
             <v-icon class="pr-3">mdi-email</v-icon>
             <p>Email</p>
           </v-btn>
         </div>
         
-        <div class="item">
+        <!-- <div class="item">
           <v-btn depressed class="btn btn2">
             <v-icon class="pr-3">mdi-google</v-icon>
             Google
           </v-btn>
-        </div>
-      </v-form>
+        </div> -->
+      </form>
     </div>
-      
-
-  
   <Footer></Footer>
-  
 </div>
   
 </template>

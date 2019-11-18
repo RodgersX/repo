@@ -2,20 +2,20 @@
 <div class="main">
   <Header></Header>
   <div class="form"> 
-      <v-form>
+      <form @submit.prevent="login">
         <h1 class="ma-3">Log in to Dashboard</h1>
         <div>
-          <v-text-field outlined dense type="email" placeholder="you@domain.com"></v-text-field>
+          <v-text-field v-model="email" outlined dense type="email" placeholder="you@domain.com"></v-text-field>
         </div>
         
         <div>
-          <v-text-field outlined dense placeholder="password" type="password"></v-text-field>
+          <v-text-field v-model="password" outlined dense placeholder="password" type="password"></v-text-field>
         </div>
 
         <div>
-          <v-btn depressed class="btn">Continue</v-btn>
+          <v-btn depressed class="btn" type="submit">Continue</v-btn>
         </div>
-      </v-form>
+      </form>
   </div>
   <Footer></Footer>
   
@@ -32,8 +32,26 @@ export default {
     Footer
   },
 
-  data: () => {
+  data() {
+    return {
+      email: '',
+      password: ''
+    }
+  },
 
+  methods: {
+    login: function() {
+      let email = this.email
+      let password = this.password
+
+      this.$store.dispatch('login', {email, password})
+      .then(() => {
+        this.$router.push('/overview')
+      })
+      .catch((err) => {
+        return err
+      })
+    }
   }
 }
 </script>
