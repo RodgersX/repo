@@ -45,7 +45,11 @@
         </v-card>
 
         <!-- Recent activities -->
-        <v-card max-width="250" class="mx-auto card2" color="transparent" flat>
+        <v-card 
+        max-width="250" 
+        class="mx-auto card2" 
+        color="transparent" 
+        flat>
           <v-list>
             <template v-for="(item, index) in items">
             <v-subheader v-if="item.header" :key="item.header">{{ item.header }}</v-subheader>
@@ -180,7 +184,7 @@ Header {
   max-width: 300px !important;
   display: flex;
   position: relative;
-  margin-top: -17.9%;
+  margin-top: -10.9%;
   margin-left: 60%;
 }
 

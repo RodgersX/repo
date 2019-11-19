@@ -1,22 +1,19 @@
 import Vue from 'vue'
+import VeeValidate from 'vee-validate'
 import App from './App.vue'
 import vuetify from './plugins/vuetify'
-import router from './router'
 import '@babel/polyfill'
-import store from './store'
-import axios from 'axios'
 
-Vue.prototype.$http = axios
+import store from './store/store'
+import { router } from './helpers/router'
 
-const token = localStorage.getItem('token')
-if(token) {
-  Vue.prototype.$http.defaults.headers.common['Authorization'] = token
-}
+Vue.use(VeeValidate);
 
 Vue.config.productionTip = false
 
 new Vue({
   vuetify,
+  VeeValidate,
   router,
   store,
   render: h => h(App)
